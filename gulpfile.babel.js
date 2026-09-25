@@ -22,7 +22,7 @@ const reload = browserSync.reload;
 const merge = require('merge-stream');
 const path = require('path');
 const workboxBuild = require('workbox-build');
-const prettyBytes = require('pretty-bytes');
+const prettyBytes = require('pretty-bytes').default || require('pretty-bytes');
 const webpack = require('webpack');
 const sass = require('gulp-sass')(require('sass'));
 
@@ -58,7 +58,7 @@ function errorHandler(error) {
 gulp.task('webpack', cb => {
   // force reload webpack config
   delete require.cache[require.resolve('./webpack.config.js')];
-  let webpackConfig = require('./webpack.config.js');
+  let webpackConfig = Object.assign({}, require('./webpack.config.js').default);
   webpackConfig.mode = DEV_MODE ? 'development' : 'production';
   webpackInstance = webpack(webpackConfig, (err, stats) => {
     printWebpackStats(stats);
@@ -68,8 +68,8 @@ gulp.task('webpack', cb => {
 
 // Optimize Images
 gulp.task('res', () => {
-  return gulp.src('app/res/**/*')
-    .pipe($.cache($.imagemin({
+  return gulp.src('app/res/**/*', { encoding: false })
+    .pipe($.cache(require('gulp-imagemin')({
       progressive: true,
       interlaced: true
     })))
@@ -84,7 +84,7 @@ gulp.task('copy', () => {
             'app/sw.js',
           ], {dot: true, nodir: true,})
           .pipe(gulp.dest('dist')),
-      gulp.src('older-version/**/*', {dot: true})
+      gulp.src('older-version/**/*', {dot: true, allowEmpty: true, encoding: false})
           .pipe(gulp.dest('dist/older-version')));
 });
 
@@ -92,14 +92,14 @@ gulp.task('copy', () => {
 gulp.task('styles', () => {
   // For best performance, don't add Sass partials to `gulp.src`
   return gulp.src('app/app.entry.scss')
-    .pipe($.changed('styles', {extension: '.scss'}))
+    .pipe(require('gulp-changed').default('styles', {extension: '.scss'}))
     .pipe($.sassGlob())
     .pipe(sass({
       style: 'expanded',
       precision: 10,
       quiet: true
     }).on('error', errorHandler))
-    .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
+    .pipe(require('gulp-autoprefixer').default(AUTOPREFIXER_BROWSERS))
     // Concatenate And Minify Styles
     .pipe($.if(!DEV_MODE, $.csso()))
     .pipe($.tap(file => file.path = file.path.replace(/\.entry\.css$/, '.css')))
@@ -129,7 +129,7 @@ gulp.task('html', () => {
 
 // Clean Output Directory
 gulp.task('clean', cb => {
-  del.sync(['.tmp', 'dist']);
+  del.deleteSync(['.tmp', 'dist']);
   $.cache.clearAll();
   cb();
 });
@@ -185,7 +185,7 @@ gulp.task('service-worker', () => {
 });
 
 // Build Production Files, the Default Task
-gulp.task('default', gulp.series('clean', 'styles', gulp.parallel('webpack', 'html', 'res', 'copy'), 'service-worker'));
+gulp.task('default', gulp.series('clean', 'styles', 'webpack', 'html', 'res', 'copy', 'service-worker'));
 
 // Build and serve the output from the dist build
 gulp.task('serve:dist', gulp.series('default', () => {
