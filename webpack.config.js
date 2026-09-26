@@ -2,7 +2,7 @@ import process from 'process';
 import path from 'path';
 import webpack from 'webpack';
 
-module.exports = {
+export default {
   entry: {
     app: './app/app.entry.js',
   },
@@ -48,7 +48,7 @@ module.exports = {
                 '@babel/preset-react'
               ],
               plugins: [
-                '@babel/plugin-proposal-object-rest-spread'
+                '@babel/plugin-transform-object-rest-spread'
               ],
             }
           },

@@ -1,6 +1,6 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.3.1/workbox-sw.js");
 
-workbox.precaching.precacheAndRoute([]);
+workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
 
 workbox.routing.registerRoute(
   new RegExp('https://(?:fonts|www).(?:googleapis|gstatic).com/(.*)'),

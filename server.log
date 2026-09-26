@@ -1,0 +1,147 @@
+
+> start
+> gulp serve
+
+[19:34:26] Requiring external module @babel/register
+[19:34:27] Using gulpfile /app/gulpfile.babel.js
+[19:34:27] Starting 'serve'...
+[19:34:27] Starting 'setDevMode'...
+[19:34:27] Finished 'setDevMode' after 930 μs
+[19:34:27] Starting 'copy'...
+[19:34:27] Finished 'copy' after 30 ms
+[19:34:27] Starting 'styles'...
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+17 │ @import 'lib/material-colors';
+   │         ^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    - 17:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+18 │ @import 'lib/material-shadows';
+   │         ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    - 18:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+19 │ @import 'lib/material-icons';
+   │         ^^^^^^^^^^^^^^^^^^^^
+   ╵
+    - 19:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+21 │ @import 'variables';
+   │         ^^^^^^^^^^^
+   ╵
+    - 21:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+23 │ @import 'core';
+   │         ^^^^^^
+   ╵
+    - 23:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use map.get instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+    ╷
+332 │   $color: map-get(map-get($material-colors, $color-name), $color-variant);
+    │                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    app/lib/material-colors.scss 332:19  material-color()
+    app/variables.scss 18:16             @import
+    - 21:9                               root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use map.get instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+    ╷
+332 │   $color: map-get(map-get($material-colors, $color-name), $color-variant);
+    │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    app/lib/material-colors.scss 332:11  material-color()
+    app/variables.scss 18:16             @import
+    - 21:9                               root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use map.get instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+51 │   $shadow: map-get($material-box-shadows, $z);
+   │            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    app/lib/material-shadows.scss 51:12   material-shadow()
+    app/components/components.scss 66:15  @import
+    - 27:9                                root stylesheet
+
+WARNING: 8 repetitive deprecation warnings omitted.
+Run in verbose mode to see all warnings.
+
+[19:34:28] Finished 'styles' after 709 ms
+[19:34:28] Starting 'html'...
+[19:34:28] Finished 'html' after 185 ms
+[19:34:28] Starting 'webpack'...
+(node:35568) [DEP0060] DeprecationWarning: The `util._extend` API is deprecated. Please use Object.assign() instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+asset [1m[32mvendor.js[39m[22m 1.72 MiB [1m[32m[emitted][39m[22m (name: vendor) (id hint: vendor)
+asset [1m[32mapp.js[39m[22m 286 KiB [1m[32m[emitted][39m[22m (name: app)
+Entrypoint [1mapp[39m[22m 2 MiB = [1m[32mvendor.js[39m[22m 1.72 MiB [1m[32mapp.js[39m[22m 286 KiB
+
+[1m[33mWARNING[39m[22m in [1mDefinePlugin
+[1m[31mConflicting[39m[22m[1m values for 'process.env.NODE_ENV'[39m[22m
+
+1 warning has detailed information that is not shown.
+Use 'stats.errorDetails: true' resp. '--stats-error-details' to show it.
+
+webpack 5.111.1 compiled with [1m[33m1 warning[39m[22m in 3448 ms
+[19:34:32] Finished 'webpack' after 3.82 s
+[19:34:32] Starting '<anonymous>'...
+[Browsersync] Access URLs:
+ ------------------------------------
+       Local: http://localhost:3000
+    External: http://192.168.0.2:3000
+ ------------------------------------
+          UI: http://localhost:3001
+ UI External: http://192.168.0.2:3001
+ ------------------------------------
+[Browsersync] Serving files from: .tmp
+[Browsersync] Serving files from: dist
+[Browsersync] Serving files from: app
+asset [1m[32mvendor.js[39m[22m 1.72 MiB [1m[32m[emitted][39m[22m (name: vendor) (id hint: vendor)
+asset [1m[32mapp.js[39m[22m 286 KiB [1m[32m[emitted][39m[22m (name: app)
+Entrypoint [1mapp[39m[22m 2 MiB = [1m[32mvendor.js[39m[22m 1.72 MiB [1m[32mapp.js[39m[22m 286 KiB
+
+[1m[33mWARNING[39m[22m in [1mDefinePlugin
+[1m[31mConflicting[39m[22m[1m values for 'process.env.NODE_ENV'[39m[22m
+
+1 warning has detailed information that is not shown.
+Use 'stats.errorDetails: true' resp. '--stats-error-details' to show it.
+
+webpack 5.111.1 compiled with [1m[33m1 warning[39m[22m in 2436 ms
+[Browsersync] Reloading Browsers...
+Terminated
